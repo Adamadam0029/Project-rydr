@@ -1,4 +1,5 @@
 <?php require "includes/header.php" ?>
+<?php require "database/connection.php" ?>
     <header>
         <div class="advertorials">
             <div class="advertorial">
@@ -22,6 +23,11 @@
     <main>
     <h2 class="section-title">Populaire auto's</h2>
     <div class="cars">
+        <?php
+            $query = $conn->prepare("select * FROM auto");
+            $query ->execute();
+            $auto = $query->fetchAll(PDO::FETCH_ASSOC);
+            ?>
         <?php for ($i = 0; $i <= 3; $i++) : ?>
             <div class="car-details">
                 <div class="car-brand">
