@@ -35,8 +35,8 @@
                     <div class="car-type">
                         <?= $row['model'] ?>
                     </div>
-                </div>
-                <img src="assets/images/products/car%20(<?= $i ?>).svg" alt="">
+                </div>  
+                <img src="assets/images/products/<?= $row['merk'] ?>.svg" alt="">
                 <div class="car-specification">
                     <span><img src="assets/images/icons/gas-station.svg" alt=""><?= $row['tankinhoud'] ?></span>
                     <span><img src="assets/images/icons/car.svg" alt=""><?= $row['bestuurssysteem'] ?></span>
