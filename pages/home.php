@@ -28,26 +28,26 @@
             $query ->execute();
             $auto = $query->fetchAll(PDO::FETCH_ASSOC);
             ?>
-        <?php for ($i = 0; $i <= 3; $i++) : ?>
+        <?php foreach ($auto as $row): ?>
             <div class="car-details">
                 <div class="car-brand">
-                    <h3>Koenigegg</h3>
+                    <h3><?= $row['merk'] ?></h3>
                     <div class="car-type">
-                        Sport
+                        <?= $row['model'] ?>
                     </div>
                 </div>
                 <img src="assets/images/products/car%20(<?= $i ?>).svg" alt="">
                 <div class="car-specification">
-                    <span><img src="assets/images/icons/gas-station.svg" alt="">90l</span>
-                    <span><img src="assets/images/icons/car.svg" alt="">Schakel</span>
-                    <span><img src="assets/images/icons/profile-2user.svg" alt="">2 Personen</span>
+                    <span><img src="assets/images/icons/gas-station.svg" alt=""><?= $row['tankinhoud'] ?></span>
+                    <span><img src="assets/images/icons/car.svg" alt=""><?= $row['bestuurssysteem'] ?></span>
+                    <span><img src="assets/images/icons/profile-2user.svg" alt=""><?= $row['capaciteit'] ?></span>
                 </div>
                 <div class="rent-details">
-                    <span><span class="font-weight-bold">€249,00</span> / dag</span>
+                    <span><b>€<?= $row['prijs'] ?></b> / dag</span>
                     <a href="/car-detail" class="button-primary">Bekijk nu</a>
                 </div>
             </div>
-        <?php endfor; ?>
+        <?php endforeach; ?>
     </div>
     <h2 class="section-title">Aanbevolen auto's</h2>
     <div class="cars">
