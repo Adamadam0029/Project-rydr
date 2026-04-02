@@ -3,16 +3,16 @@
     <header>
         <div class="advertorials">
             <div class="advertorial">
-                <h2>Hét platform om een auto te huren</h2>
-                <p>Snel en eenvoudig een auto huren. Natuurlijk voor een lage prijs.</p>
+                <h2>Het platform om een auto te huren</h2>
+                <p>Snel en eenvoudig een auto huren. Natuurlijk voor een scherpe prijs.</p>
                 <a href="#" class="button-primary">Huur nu een auto</a>
                 <img src="assets/images/car-rent-header-image-1.png" alt="">
                 <img src="assets/images/header-circle-background.svg" alt="" class="background-header-element">
             </div>
             <div class="advertorial">
-                <h2>Wij verhuren ook bedrijfswagens</h2>
-                <p>Voor een vaste lage prijs met prettig voordelen.</p>
-                <a href="#" class="button-primary">Huur een bedrijfswagen</a>
+                <h2>Wij verhuren ook supercars</h2>
+                <p>Voor een vaste scherpee prijs met prettig voordelen.</p>
+                <a href="#" class="button-primary">Huur een supercar</a>
                 <img src="assets/images/car-rent-header-image-2.png" alt="">
                 <img src="assets/images/header-block-background.svg" alt="" class="background-header-element">
 
@@ -36,7 +36,7 @@
                         <?= $row['model'] ?>
                     </div>
                 </div>  
-                <img src="assets/images/products/<?= $row['merk'] ?>.svg" alt="">
+                <img src="assets/images/products/<?= $row['merk'] ?>.jpg" alt="">
                 <div class="car-specification">
                     <span><img src="assets/images/icons/gas-station.svg" alt=""><?= $row['tankinhoud'] ?></span>
                     <span><img src="assets/images/icons/car.svg" alt=""><?= $row['bestuurssysteem'] ?></span>
