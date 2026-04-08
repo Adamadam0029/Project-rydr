@@ -435,7 +435,7 @@ footer .footer-links .links ul a {
   color: #90A3BF;
 }
 .cars img {
-  max-height: 87px;
+  max-height: 107px;
   object-fit: contain;
 }
 .cars .car-specification {
@@ -486,7 +486,6 @@ footer .footer-links .links ul a {
 
 
 
-/* HEADER */
 .help-header {
     text-align: center;
     margin-bottom: 3em;

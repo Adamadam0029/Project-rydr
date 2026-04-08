@@ -24,7 +24,7 @@
     <h2 class="section-title">Populaire auto's</h2>
     <div class="cars">
         <?php
-            $query = $conn->prepare("select * FROM auto");
+            $query = $conn->prepare("SELECT * FROM auto WHERE id IN (1, 2, 3, 4)");
             $query ->execute();
             $auto = $query->fetchAll(PDO::FETCH_ASSOC);
             ?>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="rent-details">
                     <span><b>€<?= $row['prijs'] ?></b> / dag</span>
-                    <a href="/car-detail" class="button-primary">Bekijk nu</a>
+                    <a href="/car-detail?id=<?= $row['id'] ?>" class="button-primary">Bekijk nu</a>
                 </div>
             </div>
         <?php endforeach; ?>
