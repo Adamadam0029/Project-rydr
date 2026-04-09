@@ -1,12 +1,17 @@
-<?php
-session_start();
-require "database/connection.php";
+<?php require "includes/header.php" ?>
+<?php require "database/connection.php" ?>
+
+<?php 
+ini_set('display_errors' ,1);
+error_reporting(E_ALL);
+
+
 
 $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-$password = $_POST["password"];
-$confirm_password = $_POST["confirm-password"];
+$wachtwoord = $_POST["wachtwoord"];
+$confirm_wachtwoord = $_POST["confirm-wachtwoord"];
 
-if ($password === $confirm_password) {
+if ($wachtwoord === $confirm_wachtwoord) {
     $check_account = $conn->prepare("SELECT * FROM account WHERE email = :email");
     $check_account->bindParam(":email", $email);
     $check_account->execute();
@@ -14,11 +19,11 @@ if ($password === $confirm_password) {
     if ($check_account->rowCount() === 0) {
         //Extra hoge cost om nog beter te beveiligen
         $options = ['cost' => 14];
-        $encrypted_password = password_hash($password, PASSWORD_DEFAULT, $options);
+        $encrypted_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT, $options);
 
-        $create_account = $conn->prepare("INSERT INTO account (email, password) VALUES (:email, :password)");
+        $create_account = $conn->prepare("INSERT INTO account (email, wachtwoord) VALUES (:email, :wachtwoord)");
         $create_account->bindParam(":email", $email);
-        $create_account->bindParam(":password", $encrypted_password);
+        $create_account->bindParam(":wachtwoord", $encrypted_wachtwoord);
         $create_account->execute();
 
         $_SESSION["success"] = "Registratie is gelukt, log nu in:";
@@ -36,3 +41,5 @@ if ($password === $confirm_password) {
     header("Location: register-form.php");
     exit();
 }
+
+?>

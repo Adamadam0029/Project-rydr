@@ -7,8 +7,13 @@ $select_user->bindParam(":email", $_POST['email']);
 $select_user->execute();
 $user = $select_user->fetch(PDO::FETCH_ASSOC);
 
-if (password_verify($_POST['password'], $user['password'])) {
+var_dump($user);
+
+if (password_verify($_POST['wachtwoord'], $user['wachtwoord'])) {
     $_SESSION['id'] = $user['id'];
     $_SESSION['email'] = $user['email'];
+    echo "WORKS!";
     header('Location: /');
+}else{
+    echo "Incorrect!";
 }
