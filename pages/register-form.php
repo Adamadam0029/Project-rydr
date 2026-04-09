@@ -11,10 +11,10 @@
              endif; ?>
         <label for="email">Uw e-mail</label>
         <input type="email" name="email" id="email" placeholder="johndoe@gmail.com" value="<?= isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : '' ?>" required autofocus>
-        <label for="password">Uw wachtwoord</label>
-        <input type="password" name="password" id="password" placeholder="Uw wachtwoord" required>
-        <label for="confirm-password">Herhaal wachtwoord</label>
-        <input type="password" name="confirm-password" id="confirm-password" placeholder="Uw wachtwoord" required>
+        <label for="wachtwoord">Uw wachtwoord</label>
+        <input type="wachtwoord" name="wachtwoord" id="wachtwoord" placeholder="Uw wachtwoord" required>
+        <label for="confirm-wachtwoord">Herhaal wachtwoord</label>
+        <input type="wachtwoord" name="confirm-wachtwoord" id="confirm-wachtwoord" placeholder="Uw wachtwoord" required>
         <input type="submit" value="Maak account aan" class="button-primary">
     </form>
 </main>
