@@ -1,44 +1,87 @@
 <?php
 require "includes/header.php";
 require_once "database/connection.php";
-$query = $conn->prepare("SELECT * FROM auto");
-$query->execute();
+ 
+ 
+$type = $_GET['type'] ?? [];
+$merk = $_GET['merk'] ?? [];
+$bestuur = $_GET['bestuurssysteem'] ?? [];
+$prijs = $_GET['prijs'] ?? null;
+ 
+ 
+$sql = "SELECT * FROM auto WHERE 1=1";
+$params = [];
+ 
+ 
+if (!empty($type)) {
+    $placeholders = implode(',', array_fill(0, count($type), '?'));
+    $sql .= " AND type IN ($placeholders)";
+    $params = array_merge($params, $type);
+}
+ 
+ 
+if (!empty($merk)) {
+    $placeholders = implode(',', array_fill(0, count($merk), '?'));
+    $sql .= " AND merk IN ($placeholders)";
+    $params = array_merge($params, $merk);
+}
+ 
+ 
+if (!empty($bestuur)) {
+    $placeholders = implode(',', array_fill(0, count($bestuur), '?'));
+    $sql .= " AND bestuurssysteem IN ($placeholders)";
+    $params = array_merge($params, $bestuur);
+}
+ 
+if (isset($_GET['prijs']) && $_GET['prijs'] !== '') {
+   
+ 
+    $placeholders = $_GET['prijs'];
+    $sql .= " AND prijs <= ($placeholders)";
+}
+ 
+ 
+ 
+ 
+$query = $conn->prepare($sql);
+ 
+$query->execute($params);
 $autos = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
  
+<main class="catalog">
  
-<main>
-    <h2>Ons aanbod</h2>
-</main>
  
-<main class = "catalog">
-    <aside class="sidebar">
-        <h3>Type</h3>
-        <input type="checkbox">SUV</label>
-        <input type="checkbox">high perfomance car</label>
-        <input type="checkbox">Sport</label>
-        <input type="checkbox">Cabrio</label>
-        <input type="checkbox">convertible</label>
+<aside class="sidebar">
+<form method="GET">
  
-        <h3>Merk</h3>
-        <input type="checkbox">Audi</label>
-        <input type="checkbox">BMW</label>
-        <input type="checkbox">Nissan</label>
-        <input type="checkbox">Rolls Royce</label>
-        <input type="checkbox">Lamborgini</label>
+<h3>Type</h3>
+<label><input type="checkbox" name="type[]" value="SUV" <?= in_array('SUV', $type) ? 'checked' : '' ?>> SUV</label><br>
+<label><input type="checkbox" name="type[]" value="Sport" <?= in_array('Sport', $type) ? 'checked' : '' ?>> Sport</label><br>
+<label><input type="checkbox" name="type[]" value="Cabrio" <?= in_array('Cabrio', $type) ? 'checked' : '' ?>> Cabrio</label>
  
-        <h3>Bestuurssysteem</h3>
-        <input type="checkbox">Automaat</label>
-        <input type= "checkbox">Schakel</label>
+<h3>Merk</h3>
+<label><input type="checkbox" name="merk[]" value="Audi" <?= in_array('Audi', $merk) ? 'checked' : '' ?>> Audi</label><br>
+<label><input type="checkbox" name="merk[]" value="BMW" <?= in_array('BMW', $merk) ? 'checked' : '' ?>> BMW</label><br>
+<label><input type="checkbox" name="merk[]" value="Nissan" <?= in_array('Nissan', $merk) ? 'checked' : '' ?>> Nissan</label>
  
-        <h3>prijs</h3>
-        <h5>€0  -  €30000</h5>
-        <input type="range" min="o" max="30000">
+<h3>Bestuurssysteem</h3>
+<label><input type="checkbox" name="bestuurssysteem[]" value="Automaat" <?= in_array('Automatisch', $bestuur) ? 'checked' : '' ?>> Automaat</label><br>
+<label><input type="checkbox" name="bestuurssysteem[]" value="handgeschakeld" <?= in_array('Schakel', $bestuur) ? 'checked' : '' ?>> Schakel</label>
+ 
+<h3>Prijs (max)</h3>
+<input type="range" name="prijs" min="0" max="30000" value="<?= $prijs ?? 30000 ?>">
+<p>Max: €<?= $prijs ?? 30000 ?></p>
+ 
+<br>
+<button type="submit" class="button">Filter</button>
+ 
+</form>
 </aside>
  
-             <section class= "content">
-      <section class="content">
-    <h2 class="section-title">Aanbevolen auto's</h2>
+ 
+<section class="content">
+    <h2 class="section-title">Ons aanbod</h2>
  
     <div class="cars">
         <?php foreach ($autos as $auto): ?>
@@ -49,9 +92,10 @@ $autos = $query->fetchAll(PDO::FETCH_ASSOC);
                     <div class="car-type">
                         <?= $auto['type'] ?>
                     </div>
-               
+                </div>
  
-                <img src="assets/images/<?= strtolower($auto['merk']) ?>.png" alt="">
+               
+                <img src="assets/images/products/<?= $auto['merk'] ?>.jpg" alt="">
  
                 <div class="car-specification">
                     <span>
@@ -72,16 +116,18 @@ $autos = $query->fetchAll(PDO::FETCH_ASSOC);
  
                 <div class="rent-details">
                     <span>
-                        <span class="font-weight-bold">€<?= $auto['prijs'] ?></span> / dag
+                        <b>€<?= $auto['prijs'] ?></b> / dag
                     </span>
-                    <a href="#" class="button-primary">Bekijk nu</a>
+                    <a href="/car-detail?id=<?= $auto['id'] ?>" class="button-primary">Bekijk nu</a>
                 </div>
  
             </div>
         <?php endforeach; ?>
     </div>
+ 
 </section>
-               
-             </section>
-             </main>
-<?php require "includes/footer.php" ?>
+ 
+</main>
+ 
+<?php require "includes/footer.php"; ?>
+ 
