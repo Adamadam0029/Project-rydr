@@ -25,10 +25,10 @@
         <div class="links">
             <h3>Socials</h3>
             <ul>
-                <li><a href="#">Discord</a></li>
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">Facebook</a></li>
+                <li><a href="https://discord.com/">Discord</a></li>
+                <li><a href="https://www.instagram.com/">Instagram</a></li>
+                <li><a href="https://www.instagram.com/">Twitter</a></li>
+                <li><a href="https://www.facebook.com/">Facebook</a></li>
             </ul>
         </div>
     </div>
