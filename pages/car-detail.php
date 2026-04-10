@@ -31,19 +31,19 @@
                 <span class="stars stars-4"></span>
                 <span>440+ reviewers</span>
             </div>
-            <p>NISMO is het toonbeeld geworden van Nissan's uitzonderlijke prestaties, geïnspireerd door het meest meedogenloze testterrein: het circuit.</p>
+            <p>RYDR – waar kracht, luxe en rijervaring samenkomen in één platform.</p>
             <div class="car-type">
                 <div class="grid">
-                    <div class="row"><span class="accent-color">Type Car</span><span><?= $car['type'] ?></span></div>
-                    <div class="row"><span class="accent-color">Capacity</span><span><?= $car['capaciteit'] ?></span></div>
+                    <div class="row"><span class="accent-color">Type Auto</span><span><?= $car['type'] ?></span></div>
+                    <div class="row"><span class="accent-color">Capaciteit</span><span><?= $car['capaciteit'] ?></span></div>
                 </div>
                 <div class="grid">
-                    <div class="row"><span class="accent-color">Steering</span><span><?= $car['bestuurssysteem'] ?></span></div>
-                    <div class="row"><span class="accent-color">Gasoline</span><span><?= $car['tankinhoud'] ?></span></div>
+                    <div class="row"><span class="accent-color">Transmissie</span><span><?= $car['bestuurssysteem'] ?></span></div>
+                    <div class="row"><span class="accent-color">Tankinhoud</span><span><?= $car['tankinhoud'] ?></span></div>
                 </div>
                 <div class="call-to-action">
-                    <div class="row"><span class="font-weight-bold"><?= $car['prijs'] ?></span> / dag</div>
-                    <div class="row"><a href="" class="button-primary">Huur nu</a></div>
+                    <div class="row"><b>€</b><span class="font-weight-bold"><?= $car['prijs'] ?></span> / dag</div>
+                    <div class="row"><a href="" class="button">Huur nu</a></div>
                 </div>
 
             </div>
