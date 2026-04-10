@@ -22,7 +22,27 @@
     </header>
 
     <main>
+        <div class="booking-form">
+  
+  <div class="booking-group">
+    <label>Pick-up</label>
+    <input type="text" placeholder="Locatie">
+    <input type="date">
+    <input type="time">
+  </div>
+
+  <div class="booking-group">
+    <label>Drop-off</label>
+    <input type="text" placeholder="Locatie">
+    <input type="date">
+    <input type="time">
+  </div>
+
+  <button class="booking-btn">Zoeken</button>
+
+</div>
     <h2 class="section-title">Populaire auto's</h2>
+    <a href="/ons-aanbod" class="view-all">Toon Alle</a>
     <div class="cars">
         <?php
             $query = $conn->prepare("SELECT * FROM auto WHERE id IN (1, 2, 3, 4)");
@@ -45,7 +65,7 @@
                 </div>
                 <div class="rent-details">
                     <span><b>€<?= $row['prijs'] ?></b> / dag</span>
-                    <a href="/car-detail?id=<?= $row['id'] ?>" class="button-primary">Bekijk nu</a>
+                    <a href="/car-detail?id=<?= $row['id'] ?>" class="button">Bekijk nu</a>
                 </div>
             </div>
         <?php endforeach; ?>
