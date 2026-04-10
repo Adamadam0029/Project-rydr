@@ -20,8 +20,8 @@
             Rydr.
         </a>
     </div>
-    <form action="">
-        <input type="search" name="" id="" placeholder="Welke auto wilt u huren?">
+    <form method="GET" action="/ons-aanbod" class="search">
+        <input type="search" name="zoek" id="" placeholder="Welke auto wilt u huren?" value="<?= $_GET['zoek'] ?? '' ?>">
         <img src="assets/images/icons/search-normal.svg" alt="" class="search-icon">
     </form>
     <nav>
@@ -37,7 +37,7 @@
             <img src="assets/images/profil.png" alt="">
             <div class="account-dropdown">
                 <ul>
-                    <li><img src="assets/images/icons/setting.svg" alt=""><a href="#">Naar account</a></li>
+                    <li><img src="assets/images/icons/setting.svg" alt=""><a href="/naar-account">Naar account</a></li>
                     <li><img src="assets/images/icons/logout.svg" alt=""><a href="/logout">Uitloggen</a></li>
                 </ul>
             </div>
@@ -49,3 +49,11 @@
     </div>
 </div>
 <div class="content">
+
+
+
+
+
+
+
+
