@@ -11,6 +11,13 @@ $prijs = $_GET['prijs'] ?? null;
  
 $sql = "SELECT * FROM auto WHERE 1=1";
 $params = [];
+$zoek = $_GET['zoek'] ?? '';
+if (!empty($zoek)) {
+    $sql .= " AND (merk LIKE ? OR model LIKE ?)";
+    $params[] = "%$zoek%";
+    $params[] = "%$zoek%";
+ 
+}
  
  
 if (!empty($type)) {
@@ -62,16 +69,17 @@ $autos = $query->fetchAll(PDO::FETCH_ASSOC);
  
 <h3>Merk</h3>
 <label><input type="checkbox" name="merk[]" value="Audi" <?= in_array('Audi', $merk) ? 'checked' : '' ?>> Audi</label><br>
-<label><input type="checkbox" name="merk[]" value="BMW" <?= in_array('BMW', $merk) ? 'checked' : '' ?>> BMW</label><br>
+<label><input type="checkbox" name="merk[]" value="Rolls royce" <?= in_array('Rolls royce', $merk) ? 'checked' : '' ?>>Rolls royce </label><br>
 <label><input type="checkbox" name="merk[]" value="Nissan" <?= in_array('Nissan', $merk) ? 'checked' : '' ?>> Nissan</label>
+<label><input type="checkbox" name="merk[]" value="Lamborghini " <?= in_array('Lamborghini', $merk) ? 'checked' : '' ?>> Lamborghini</label>
  
 <h3>Bestuurssysteem</h3>
-<label><input type="checkbox" name="bestuurssysteem[]" value="Automaat" <?= in_array('Automatisch', $bestuur) ? 'checked' : '' ?>> Automaat</label><br>
-<label><input type="checkbox" name="bestuurssysteem[]" value="handgeschakeld" <?= in_array('Schakel', $bestuur) ? 'checked' : '' ?>> Schakel</label>
+<label><input type="checkbox" name="bestuurssysteem[]" value="Automatisch" <?= in_array('Automatisch', $bestuur) ? 'checked' : '' ?>> Automaat</label><br>
+<label><input type="checkbox" name="bestuurssysteem[]" value="handgeschakeld" <?= in_array('handgeschakeld', $bestuur) ? 'checked' : '' ?>> Schakel</label>
  
 <h3>Prijs (max)</h3>
-<input type="range" name="prijs" min="0" max="30000" value="<?= $prijs ?? 30000 ?>">
-<p>Max: €<?= $prijs ?? 30000 ?></p>
+<input type="range" name="prijs" min="0" max="3000" value="<?= $prijs ?? 3000 ?>">
+<p>Max: €<?= $prijs ?? 3000 ?></p>
  
 <br>
 <button type="submit" class="button">Filter</button>
@@ -118,7 +126,7 @@ $autos = $query->fetchAll(PDO::FETCH_ASSOC);
                     <span>
                         <b>€<?= $auto['prijs'] ?></b> / dag
                     </span>
-                    <a href="/car-detail?id=<?= $auto['id'] ?>" class="button-primary">Bekijk nu</a>
+                    <a href="/car-detail?id=<?= $auto['id'] ?>" class="button">Bekijk nu</a>
                 </div>
  
             </div>
@@ -129,5 +137,4 @@ $autos = $query->fetchAll(PDO::FETCH_ASSOC);
  
 </main>
  
-<?php require "includes/footer.php"; ?>
- 
+<?php require "includes/footer.php"; ?> 
